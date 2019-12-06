@@ -60,6 +60,13 @@ collections:
     fields:
       - { name: title, label: Title }
       - { name: description, label: Description, widget: text }
+      - {
+          name: start,
+          label: Start time,
+          widget: datetime,
+          default: "",
+          format: "LL",
+        }
       - { name: photo, label: Photo, widget: image }
   - name: products
     label: Products

@@ -224,19 +224,23 @@
 																</div>
 												</div>
 												<div class="row row-padded-mb">
+													{% for item in events %}
 																<div class="col-md-4 animate-box">
 																				<div class="fh5co-event">
 																								<div class="date text-center">
-																												<span>15<br>Mar.</span></div>
+																												<span>{{item.start}}</span></div>
 																								<h3>
-																												<a href="#">USA, International Triathlon Event</a>
+																												<a href="#">{{item.title}}</a>
 																								</h3>
-																								<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+																								<p>{{item.description}}</p>
 																								<p>
 																												<a href="#">Read More</a>
 																								</p>
 																				</div>
 																</div>
+
+																{% endfor %}
+
 																<div class="col-md-4 animate-box">
 																				<div class="fh5co-event">
 																								<div class="date text-center">
