@@ -37,9 +37,10 @@ collections:
     create: true
     fields:
       - { name: title, label: Title }
-      - { name: location, label: Location, widget: text }
+      - { name: location, label: Location, widget: string }
       - { name: photo, label: Photo, widget: image }
       - { name: description, label: Description, widget: text }
+      - { name: telephone, label: Description, widget: string }
   - name: products
     label: Products
     folder: products
