@@ -41,6 +41,26 @@ collections:
       - { name: photo, label: Photo, widget: image }
       - { name: description, label: Description, widget: text }
       - { name: telephone, label: Telephone, widget: string }
+  - name: categories
+    label: Categories
+    folder: categories
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - name: events
+    label: Events
+    folder: events
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: text }
+      - { name: photo, label: Photo, widget: image }
   - name: products
     label: Products
     folder: products

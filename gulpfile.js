@@ -51,6 +51,7 @@ gulp.task("render_content", function(cb) {
         var contents = {
           articles: findFiles("./posts"),
           branches: findFiles("./branches"),
+          events: findFiles("./events"),
           staff: findFiles("./staff")
         };
         return contents;
@@ -60,7 +61,7 @@ gulp.task("render_content", function(cb) {
       nunjucksRender({
         path: ["templates/"], // String or Array
         data: {
-          site_title: "Os Foods",
+          site_title: "National Library",
           instagram_username: "",
           contact_form_url:
             "https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse"
