@@ -8,6 +8,7 @@ collections:
   - name: post
     label: Post
     folder: posts
+    identifier_field: title
     extension: json
     widget: "list"
     create: true
@@ -17,6 +18,7 @@ collections:
       - { name: photo, label: Photo, widget: image }
   - name: staff
     label: Staff
+    identifier_field: fullname
     folder: staff
     extension: json
     widget: "list"
