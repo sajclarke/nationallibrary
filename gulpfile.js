@@ -51,6 +51,7 @@ gulp.task("render_content", function(cb) {
         var contents = {
           articles: findFiles("./posts"),
           branches: findFiles("./branches"),
+          categories: findFiles("./categories"),
           events: findFiles("./events"),
           staff: findFiles("./staff")
         };
