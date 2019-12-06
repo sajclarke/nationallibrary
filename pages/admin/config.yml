@@ -27,6 +27,7 @@ collections:
       - { name: role, label: Role }
       - { name: fullname, label: FullName, widget: text }
       - { name: photo, label: Photo, widget: image }
+      - { name: description, label: Description, widget: text }
   - name: products
     label: Products
     folder: products

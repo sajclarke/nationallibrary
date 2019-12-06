@@ -1,19 +1,19 @@
 // Load plugins
-const browsersync = require('browser-sync').create();
-const gulp = require('gulp');
-var nunjucksRender = require('gulp-nunjucks-render');
-var data = require('gulp-data');
-var path = require('path');
-var fs = require('fs');
-var netlify = require('gulp-netlify');
-var merge = require('gulp-merge-json');
+const browsersync = require("browser-sync").create();
+const gulp = require("gulp");
+var nunjucksRender = require("gulp-nunjucks-render");
+var data = require("gulp-data");
+var path = require("path");
+var fs = require("fs");
+var netlify = require("gulp-netlify");
+var merge = require("gulp-merge-json");
 
-var git = require('gulp-git');
+var git = require("gulp-git");
 
-const imagemin = require('gulp-imagemin');
+const imagemin = require("gulp-imagemin");
 
 var manageEnvironment = function(env) {
-  env.addFilter('split', function(str, seperator) {
+  env.addFilter("split", function(str, seperator) {
     return str.split(seperator);
   });
 };
@@ -25,10 +25,10 @@ var findFiles = function(folder) {
   var files = fs.readdirSync(folder);
 
   files.forEach(file => {
-    let fileStat = fs.statSync(folder + '/' + file).isDirectory();
+    let fileStat = fs.statSync(folder + "/" + file).isDirectory();
     if (!fileStat) {
-      if (file.includes('json')) {
-        posts.push(JSON.parse(fs.readFileSync(folder + '/' + file)));
+      if (file.includes("json")) {
+        posts.push(JSON.parse(fs.readFileSync(folder + "/" + file)));
       }
     }
   });
@@ -36,29 +36,34 @@ var findFiles = function(folder) {
   return posts;
 };
 
-gulp.task('render_content', function(cb) {
+gulp.task("render_content", function(cb) {
   // Copy assets to dist folder
-  gulp.src(['./assets/**/*']).pipe(gulp.dest('./build/assets/'));
-  gulp.src(['pages/**/*.yml']).pipe(gulp.dest('./build/'));
+  gulp.src(["./assets/**/*"]).pipe(gulp.dest("./build/assets/"));
+  gulp.src(["pages/**/*.yml"]).pipe(gulp.dest("./build/"));
 
   //Render nunjucks to html
   gulp
-    .src('pages/**/*.+(html|njk)')
+    .src("pages/**/*.+(html|njk)")
     // Adding data to Nunjucks
 
     .pipe(
       data(function() {
-        var contents = { articles: findFiles('./posts'), products: findFiles('./products') };
+        var contents = {
+          articles: findFiles("./posts"),
+          products: findFiles("./products"),
+          staff: findFiles("./staff")
+        };
         return contents;
       })
     )
     .pipe(
       nunjucksRender({
-        path: ['templates/'], // String or Array
+        path: ["templates/"], // String or Array
         data: {
-          site_title: 'Os Foods',
-          instagram_username: '',
-          contact_form_url: 'https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse'
+          site_title: "Os Foods",
+          instagram_username: "",
+          contact_form_url:
+            "https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse"
         },
         envOptions: {
           watch: false
@@ -66,15 +71,15 @@ gulp.task('render_content', function(cb) {
         manageEnv: manageEnvironment
       })
     )
-    .pipe(gulp.dest('build'));
+    .pipe(gulp.dest("build"));
   cb();
 });
 
-gulp.task('render_images', function(cb) {
+gulp.task("render_images", function(cb) {
   gulp
-    .src('./assets/images/**/*')
+    .src("./assets/images/**/*")
     .pipe(imagemin())
-    .pipe(gulp.dest('build/assets/images'));
+    .pipe(gulp.dest("build/assets/images"));
   cb();
 });
 
@@ -82,7 +87,7 @@ gulp.task('render_images', function(cb) {
 function browserSync(done) {
   browsersync.init({
     server: {
-      baseDir: './build'
+      baseDir: "./build"
     }
   });
   done();
@@ -97,15 +102,15 @@ function browserSyncReload(done) {
 
 // Watch files
 function watchFiles(done) {
-  gulp.watch('./posts/**/*', gulp.series('render_content'));
-  gulp.watch('./assets/**/*', gulp.series('render_content'));
-  gulp.watch('./templates/**/*', gulp.series('render_content'));
-  gulp.watch('./pages/**/*', gulp.series('render_content'));
-  gulp.watch('./build/*.html', browserSyncReload);
+  gulp.watch("./posts/**/*", gulp.series("render_content"));
+  gulp.watch("./assets/**/*", gulp.series("render_content"));
+  gulp.watch("./templates/**/*", gulp.series("render_content"));
+  gulp.watch("./pages/**/*", gulp.series("render_content"));
+  gulp.watch("./build/*.html", browserSyncReload);
   done();
 }
 
-gulp.task('default', gulp.parallel('render_content', 'render_images'));
+gulp.task("default", gulp.parallel("render_content", "render_images"));
 
 // dev task
-gulp.task('dev', gulp.parallel('render_content', watchFiles, browserSync));
+gulp.task("dev", gulp.parallel("render_content", watchFiles, browserSync));
