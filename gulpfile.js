@@ -50,7 +50,7 @@ gulp.task("render_content", function(cb) {
       data(function() {
         var contents = {
           articles: findFiles("./posts"),
-          products: findFiles("./products"),
+          branches: findFiles("./branches"),
           staff: findFiles("./staff")
         };
         return contents;

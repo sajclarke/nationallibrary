@@ -28,6 +28,18 @@ collections:
       - { name: fullname, label: FullName, widget: text }
       - { name: photo, label: Photo, widget: image }
       - { name: description, label: Description, widget: text }
+  - name: branches
+    label: Branches
+    identifier_field: title
+    folder: branches
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: location, label: Location, widget: text }
+      - { name: photo, label: Photo, widget: image }
+      - { name: description, label: Description, widget: text }
   - name: products
     label: Products
     folder: products
