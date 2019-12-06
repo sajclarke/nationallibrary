@@ -1,0 +1,61 @@
+backend:
+  name: github
+  repo: sajclarke/nationallibrary
+
+media_folder: assets/img/uploads
+
+collections:
+  - name: post
+    label: Post
+    folder: posts
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - name: staff
+    label: Staff
+    folder: staff
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: role, label: Role }
+      - { name: fullname, label: FullName, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - name: products
+    label: Products
+    folder: products
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: body, label: Description, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Info"
+        name: "siteinfo"
+        file: "content/about.yml"
+        fields:
+          - { label: Mission, name: mission, widget: text }
+          - { label: Slogan, name: slogan, widget: text }
+          - { label: Background, name: background, widget: text }
+          - label: Owner
+            name: owner
+            widget: object
+            fields:
+              - { label: "Full Name", name: "fullname", widget: string }
+              - { label: "Bio", name: "bio", widget: text }
+              - { label: Photo, name: photo, widget: image }
+          - label: Exhibits
+            name: exhibits
+            widget: list
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Location, name: location, widget: string }
+              - { label: Photo, name: photo, widget: image }
