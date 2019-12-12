@@ -1,9 +1,6 @@
 backend:
   # name: github
   name: git-gateway
-  accept_roles: #optional - accepts all users if left out
-    - admin
-    - editor
   repo: sajclarke/nationallibrary
 
 media_folder: assets/img/uploads
