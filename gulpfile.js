@@ -12,13 +12,13 @@ var git = require("gulp-git");
 
 const imagemin = require("gulp-imagemin");
 
-var manageEnvironment = function(env) {
-  env.addFilter("split", function(str, seperator) {
+var manageEnvironment = function (env) {
+  env.addFilter("split", function (str, seperator) {
     return str.split(seperator);
   });
 };
 
-var findFiles = function(folder) {
+var findFiles = function (folder) {
   var posts = [];
   // var postsfolder = './posts';
 
@@ -36,7 +36,7 @@ var findFiles = function(folder) {
   return posts;
 };
 
-gulp.task("render_content", function(cb) {
+gulp.task("render_content", function (cb) {
   // Copy assets to dist folder
   gulp.src(["./assets/**/*"]).pipe(gulp.dest("./build/assets/"));
   gulp.src(["pages/**/*.yml"]).pipe(gulp.dest("./build/"));
@@ -47,12 +47,13 @@ gulp.task("render_content", function(cb) {
     // Adding data to Nunjucks
 
     .pipe(
-      data(function() {
+      data(function () {
         var contents = {
           articles: findFiles("./posts"),
           branches: findFiles("./branches"),
           categories: findFiles("./categories"),
           events: findFiles("./events"),
+          siteinfo: findFiles("./site"),
           staff: findFiles("./staff")
         };
         return contents;
@@ -62,6 +63,7 @@ gulp.task("render_content", function(cb) {
       nunjucksRender({
         path: ["templates/"], // String or Array
         data: {
+          // content_entry: { item: "one", entry: "two" },
           site_title: "National Library",
           instagram_username: "",
           contact_form_url:
@@ -77,7 +79,7 @@ gulp.task("render_content", function(cb) {
   cb();
 });
 
-gulp.task("render_images", function(cb) {
+gulp.task("render_images", function (cb) {
   gulp
     .src("./assets/images/**/*")
     .pipe(imagemin())
@@ -105,6 +107,9 @@ function browserSyncReload(done) {
 // Watch files
 function watchFiles(done) {
   gulp.watch("./posts/**/*", gulp.series("render_content"));
+  gulp.watch("./site/**/*", gulp.series("render_content"));
+  gulp.watch("./branches/**/*", gulp.series("render_content"));
+  gulp.watch("./categories/**/*", gulp.series("render_content"));
   gulp.watch("./assets/**/*", gulp.series("render_content"));
   gulp.watch("./templates/**/*", gulp.series("render_content"));
   gulp.watch("./pages/**/*", gulp.series("render_content"));

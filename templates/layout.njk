@@ -3,6 +3,13 @@
     {% include "partials/header.html" %}
     <body>
 
+        {% set mission = siteinfo[0].mission %}
+        {% set telephone = siteinfo[0].telephone %}
+        {% set logo = siteinfo[0].logo %}
+        {% set facebook_url = siteinfo[0].socialmedia.facebook %}
+        {% set twitter_url = siteinfo[0].socialmedia.twitter %}
+        {% set instagram_url = siteinfo[0].socialmedia.instagram %}
+
         <div class="fh5co-loader"></div>
 
         <div id="page">

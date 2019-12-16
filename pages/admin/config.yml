@@ -29,6 +29,12 @@ collections:
       - { name: fullname, label: FullName, widget: text }
       - { name: photo, label: Photo, widget: image }
       - { name: description, label: Description, widget: text }
+  # - label: Gallery
+  #   name: gallery
+  #   folder: gallery
+  #   extension: json
+  #   widget: "list"
+  #   field: { label: Image, name: image, widget: image }
   - name: branches
     label: Branches
     identifier_field: title
@@ -42,6 +48,25 @@ collections:
       - { name: photo, label: Photo, widget: image }
       - { name: description, label: Description, widget: text }
       - { name: telephone, label: Telephone, widget: string }
+  - name: featured_products
+    label: Featured Products
+    folder: featured_products
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - name: gallery
+    label: Gallery
+    folder: gallery
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string }
+      - { name: photo, label: Photo, widget: image }
   - name: categories
     label: Categories
     folder: categories
@@ -69,37 +94,37 @@ collections:
           format: "LL",
         }
       - { name: photo, label: Photo, widget: image }
-  - name: products
-    label: Products
-    folder: products
-    extension: json
+  - label: "Site Info"
+    name: "siteinfo"
+    folder: "site"
     widget: "list"
+    extension: json
     create: true
     fields:
-      - { name: title, label: Title }
-      - { name: body, label: Description, widget: text }
-      - { name: photo, label: Photo, widget: image }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Telephone", name: "telephone", widget: "string" }
+      - { label: Mission, name: mission, widget: text }
+      - { label: Vision, name: vision, widget: text }
+      - { label: Description, name: description, widget: text }
+      - { label: "Logo", name: "logo", widget: "image" }
+      - label: "Social Media Links"
+        name: "socialmedia"
+        widget: "object"
+        fields:
+          - { label: "Facebook", name: "facebook", widget: "string" }
+          - { label: "Twitter", name: "twitter", widget: "string" }
+          - { label: "Instagram", name: "instagram", widget: "string" }
   - label: "Pages"
     name: "pages"
     files:
       - label: "Info"
         name: "siteinfo"
-        file: "content/about.yml"
+        file: "content/test.json"
+        extension: json
         fields:
           - { label: Mission, name: mission, widget: text }
-          - { label: Slogan, name: slogan, widget: text }
+          - { label: Vision, name: vision, widget: text }
+          - { label: Description, name: description, widget: text }
+          - { label: Telephone, name: telephone, widget: string }
+          - { name: photo, label: Photo, widget: image }
           - { label: Background, name: background, widget: text }
-          - label: Owner
-            name: owner
-            widget: object
-            fields:
-              - { label: "Full Name", name: "fullname", widget: string }
-              - { label: "Bio", name: "bio", widget: text }
-              - { label: Photo, name: photo, widget: image }
-          - label: Exhibits
-            name: exhibits
-            widget: list
-            fields:
-              - { label: Name, name: name, widget: string }
-              - { label: Location, name: location, widget: string }
-              - { label: Photo, name: photo, widget: image }
