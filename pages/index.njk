@@ -8,24 +8,25 @@
 				<aside id="fh5co-hero">
 								<div class="flexslider">
 												<ul class="slides">
-																<li style="background-image: url(assets/images/img_bg_1.jpg);">
-																				<div class="overlay-gradient"></div>
-																				<div class="container">
-																								<div class="row">
-																												<div class="col-md-8 col-md-offset-2 text-center slider-text">
-																																<div class="slider-text-inner">
-																																				<h1>Welcome to Our New Website!</h1>
-																																				<h2>The Roots of Education are Bitter, But the Fruit is Sweet
-																																				</h2>
-																																				<p>
-																																								<a class="btn btn-primary btn-lg" href="#">Find A Book!</a>
-																																				</p>
-																																</div>
-																												</div>
-																								</div>
+																{% for item in featured_products %}
+																<li style="background-image: url({{item.photo}});">
+																	<div class="overlay-gradient"></div>
+																	<div class="container">
+																		<div class="row">
+																			<div class="col-md-8 col-md-offset-2 text-center slider-text">
+																				<div class="slider-text-inner">
+																					<h1>{{item.title}}</h1>
+																					<h2>{{item.description}}</h2>
+																					<p>
+																						<a class="btn btn-primary btn-lg" href="#">Find A Book!</a>
+																					</p>
 																				</div>
+																			</div>
+																		</div>
+																	</div>
 																</li>
-																<li style="background-image: url(assets/images/img_bg_2.jpg);">
+																{% endfor %}
+																{# <li style="background-image: url(assets/images/img_bg_2.jpg);">
 																				<div class="overlay-gradient"></div>
 																				<div class="container">
 																								<div class="row">
@@ -52,13 +53,13 @@
 																																				<h2>We Help You to Learn New Things</h2>
 
 																																				<p>
-																																								<a class="btn btn-primary btn-lg btn-learn" href="#">Find A Book!</a>
+																																					<a class="btn btn-primary btn-lg btn-learn" href="#">Find A Book!</a>
 																																				</p>
 																																</div>
 																												</div>
 																								</div>
 																				</div>
-																</li>
+																</li> #}
 												</ul>
 								</div>
 				</aside>

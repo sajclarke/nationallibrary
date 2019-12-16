@@ -53,6 +53,7 @@ gulp.task("render_content", function (cb) {
           branches: findFiles("./branches"),
           categories: findFiles("./categories"),
           events: findFiles("./events"),
+          featured_products: findFiles("./featured_products"),
           siteinfo: findFiles("./site"),
           staff: findFiles("./staff")
         };
@@ -108,6 +109,7 @@ function browserSyncReload(done) {
 function watchFiles(done) {
   gulp.watch("./posts/**/*", gulp.series("render_content"));
   gulp.watch("./site/**/*", gulp.series("render_content"));
+  gulp.watch("./featured_products/**/*", gulp.series("render_content"));
   gulp.watch("./branches/**/*", gulp.series("render_content"));
   gulp.watch("./categories/**/*", gulp.series("render_content"));
   gulp.watch("./assets/**/*", gulp.series("render_content"));
